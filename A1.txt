@@ -1,0 +1,214 @@
+Nome: DIEGO RODRIGO RABELO DOS SANTOS
+Matricula: 20210017662
+
+Questao 1:
+p == &i; Ao comparar o valor armazenado em "p" com o endereço de memória de "i" apontam para o mesmo endereço de memória, portanto setença verdadeira = 1.
+*p - *q; O resultado é -2, uma vez que "*p" aponta para o valor de "i" (3) e "*q" aponta para o conteúdo de "j" (5).
+**&p; O resultado é 3, pois ao desrenferenciar "&p" o valor resultará em i (3).
+---------------------------
+Questao 2:
+p = 4094
+p+1 = 4096 (Soma de p + valor do tamanho de bytes (2))
+*p+2 = 7 (Valor de *p=5 + 2)
+**&p = 5 (Desreferenciando &p fica o valor de i=5)
+3**p = 15 (3 * o valor de *p=5)
+**&p+4 = 9 (Valor de **&p=5 + 4)
+
+---------------------------
+Questao 3:
+*q = &j; Associação diferente, sendo "*q" um ponteiro de valor int e "&j" o endereço do ponteiro.
+i = (*&)j; operação inválida pois desreferencia um endereço ainda não lido (j).
+
+---------------------------
+Questao 4:
+
+a) 20 = O valor de "valor" foi modificado através do ponteiro "p1" para 20.
+b) 29.0 = O valor de "temp" foi modificado através do ponteiro "p2" para 29.0.
+c) P = O valor de "aux" aponta para o valor de "p3" que referencia para o endereço de "nome[0]" da palavra "Ponteiros". 
+d) e = O valor de "aux" aponta para o valor de "p3" que referencia para o endereço de "nome[4]" da palavra "Ponteiros".
+e) P = O valor de "p3=nome" aponta para o primeiro char de "Ponteiros".
+f) e = O valor de "p3" aponta para o quinto char de "Ponteiros".
+g) t = O valor de "p3" é decrementado uma posição da palavra "Ponteiros". de "e" para "t".
+h) 31 = A variavel "idade" aponta para o valor de "p4" que é igual ao primeiro elemento do endereço de "vetor" [0].
+i) 45 = A variavel "idade" aponta para o valor de "p5" que é igual ao segundo elemento do endereço de "vetor" [1], pois soma "p4+1", sendo p4[0].
+j) 27 = A variavel "idade" aponta para o valor de "p4" que é igual ao terceiro elemento do endereço de "vetor" [2], pois soma "p5+1", sendo p5[1].
+l) 31 = A variavel "idade" aponta para o valor de "p4" que é igual ao primeiro elemento do endereço de "vetor" [0], pois decrementa "p4-2", sendo p4[2].
+m) 45 = O valor de "p5" aponta para "vetor[1]"=45, pois decrementa a posição [2] - [1]. 
+n) 27 = O valor de "p5" é incrementado uma posição, indo para "vetor[2]. 
+
+---------------------------
+Questao 5:
+
+contador/valor/valor/endereco/endereco
+i = 0 vet[0] = 1.1 *(f + 0) = 1.1 &vet[0] = BB0C4C40 (f + 0) = BB0C4C40 
+i = 1 vet[1] = 2.2 *(f + 1) = 2.2 &vet[1] = BB0C4C44 (f + 1) = BB0C4C44
+i = 2 vet[2] = 3.3 *(f + 2) = 3.3 &vet[2] = BB0C4C48 (f + 2) = BB0C4C48
+i = 3 vet[3] = 4.4 *(f + 3) = 4.4 &vet[3] = BB0C4C4C (f + 3) = BB0C4C4C
+i = 4 vet[4] = 5.5 *(f + 4) = 5.5 &vet[4] = BB0C4C50 (f + 4) = BB0C4C50
+
+Uma vez que "f" está apontando para o primeiro elemento do vetor "vet" teremos os valores de "f" e "vet" iguais para cada indice analisado e somado, assim como os endereços serão os mesmos.
+
+---------------------------
+Questao 6:
+
+*(pulo + 2)
+pulo + 2;
+
+---------------------------
+Questao 7:
+
+p = mat + 1; Válida e p está apontando para o segundo elemento de "mat" [1]. 
+p = mat; Válida e p está apontando para o primeiro elemendo do vetor "mat" [0].
+p = mat; Válida e p está apontando para o primeiro elemendo do vetor "mat" [0].
+x = (*mat); Válida e x está apontando para o primeiro elemendo do vetor "mat" [0].
+
+---------------------------
+Questao 8:
+
+a) 4 9 13 --> Mostra os valores do vetor "vet". "*(vet+i)" primeiro soma a posição do vetor + o indice e desreferencia, ou seja, mostra o valor da posição. 
+b) A1EEA49C A1EEA4A0 A1EEA4A4 --> Mostra o endereço alocado para cada elemento do vetor.
+---------------------------
+Questao 9:
+O código precisa ser ajustado.
+Ajuste 1: 
+- Atribuir os valore de "x" e "nome" na estrutura principal e não na função struct.
+- É preciso alocar o ponteir *s da struct em malloc.
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+struct teste {
+    int x;
+    char nome[10];
+};
+
+int main() {
+    struct teste *s = malloc(sizeof(struct teste));
+    s->x = 3; // Atribuir valor a x
+    strcpy(s->nome, "jose"); 
+
+    printf("%d\n", s->x);
+    printf("%s", s->nome);
+
+    return 0;
+}
+
+O resultado é:
+3
+Jose
+---------------------------
+Questao 10:
+
+O código é indefinido.
+
+#include <stdio.h>
+
+void main(){ // mudar para int.
+    int const *x = 3; 
+    printf("%d", ++(*x)); //não pode modificar o valor de uma constante. 
+}
+
+---------------------------
+Questao 11:
+
+#include <stdio.h>
+
+int main() {
+    char c[4];
+    int i[4];
+    float f[4];
+    double d[4];
+    
+    printf("char:   %d, %d, %d, %d\n", c, c+1, c+2, c+3);
+    printf("int:    %d, %d, %d, %d\n", i, i+1, i+2, i+3);
+    printf("float:  %d, %d, %d, %d\n", f, f+1, f+2, f+3);
+    printf("double: %d, %d, %d, %d\n", d, d+1, d+2, d+3);
+}
+
+Saídas do programa: O tamanho da variável "int' e "float" é de 4 bytes cada.
+Saídas idealizada pela questão:
+char:   4092, 4093, 4094, 4095
+int:    4092, 4094, 4096, 4098
+float:  4092, 4096, 4100, 4104
+double: 4092, 4100, 4108, 4112
+
+---------------------------
+Questao 12:
+
+aloha[2] = value; - Válido
+scanf("%f", &aloha); - Inválido. "aloha" é um vetor.
+aloha = "value"; - Inválido. "aloha" é um vetor.
+printf("%f", aloha); - Inválido. "aloha" é um vetor.
+coisas[4][4] = aloha[3]; - Válido
+coisas[5] = aloha; - i=Inválido. "aloha" é um vetor.
+pf = value; - Inválido
+pf = aloha; - Válido
+---------------------------
+Questao 13:
+Memory leak é a utilização da memória de forma não gerenciavél, ou seja, quando a memória não utilizada não é liberada para o programa, causando futuros travamentos e alto consumo da memória. 
+Exemplo 1: A utilização da função "malloc" aloca bytes na memória heap, ou seja, uma memória finita que necessita de liberação do programador.
+
+#include <stdio.h>
+#include <stdlib.h>
+
+int sum(int x, int y){
+    int *result = malloc(1 * sizeof(int));
+    
+    *result = x + y;
+    return *result;
+}
+
+int main(){
+    int x;
+    
+    scanf("%d", &x);
+    printf("%d + 5 = %d\n", x, sum(x, 5));
+    
+    return 0;
+}
+
+Exemplo 2: Utilizando "malloc" e não liberando o sistema com "free()".
+
+#include <stdio.h>
+#include <stdlib.h>
+
+int main() {
+    int *ptr = malloc(sizeof(int)); 
+    if (ptr == NULL) {
+        printf("Erro\n");
+        return 1;
+    }
+
+    *ptr = 10; 
+
+    return 0;
+}
+
+Exemplo 3: Utilizando "calloc" para um array de 5 inteiros e não liberando o sistema com "free()".
+#include <stdio.h>
+#include <stdlib.h>
+
+int main() {
+    int *ptr = calloc(5, sizeof(int));
+
+    if (ptr == NULL) {
+        printf("Erro\n");
+        return 1;
+    }
+
+    for (int i = 0; i < 5; i++) {
+        ptr[i] = i + 1;
+    }
+
+    return 0;
+}
+
+
+---------------------------
+Questao 14:
+<resposta da questao 2>
+---------------------------
+Questao 15:
+<resposta da questao 2>
+---------------------------
