@@ -207,8 +207,283 @@ int main() {
 
 ---------------------------
 Questao 14:
-<resposta da questao 2>
+R: O ponteiro de função permite, através de um ponteiro, chamar uma função desejada.
+
+
+#include <stdio.h>
+
+int sum(int a, int b, int c) { //função soma de 3 varáveis.
+    return a + b + c;
+}
+
+int main(){
+   int (*ptr_sum)(int, int, int);           //declarando o ponteiro para a função.
+   ptr_sum = sum;                           //iniciar ponteiro para a função "sum".
+   int resultado = (*ptr_sum)(8, 9, 3);     //chamando a função "sum" e definindo valores
+   
+   printf("%d",resultado);
+}
 ---------------------------
 Questao 15:
-<resposta da questao 2>
+
+#include <stdio.h>
+
+int main() {
+    int n;
+    printf("Digite a qtd de valores: ");
+    scanf("%d", &n);
+    
+    float numeros[n];
+    printf("Digite os " "%d " "valores: \n", n);
+    for (int i = 0; i < n; i++) {
+        scanf("%f", &numeros[i]);
+    }
+
+    for (int i = 1; i < 5; i++) {
+        float chave = numeros[i];
+        int j = i - 1;
+        while (j >= 0 && numeros[j] > chave) {
+            numeros[j + 1] = numeros[j];
+            j = j - 1;
+        }
+        numeros[j + 1] = chave;
+    }
+    printf("crescente: ");
+    for (int i = 0; i < 5; i++) {
+        printf("%f ", numeros[i]);
+    }
+    return 0;
+}
 ---------------------------
+Questao 16:
+
+#include <stdio.h>
+#include <stdlib.h>
+
+//Criando a função de comparação
+int compare (const void *a, const void *b){ 
+if (*(float*) a < *(float*)b) return -1; //compara: se a é menor que b retorna -1; 
+if (*(float*) a == *(float*)b) return 0;//compara: se a é igual a b retorna 0;
+if (*(float*) a > *(float*)b) return 1; //compara: se a é maior que b retorna 1;
+}
+
+//Criando função ordenar qsort
+float ordenar(float *numeros, int n) { //função que recebe o array int numeros e o tamanho n.
+qsort(numeros, n, sizeof(int), compare); //função qsort recebe o array numero e o tamanho , o tamanho de cada int "sizeof" e a função compare.
+}
+
+int main(){
+
+//escrevendo a qtd de valores    
+int n;
+printf("Digite a qtd de valores: ");
+scanf("%d", &n);
+
+//digitando os valores
+float numeros[n];
+printf("Digite os " "%d " "valores: \n", n);
+for (int i = 0; i < n; i++) {
+    scanf("%f", &numeros[i]);
+}
+
+//chamando a função ordenar qsort
+ordenar(numeros, n); //chama a função ordenar e passa o array numero e o tamanho n
+for (int i=0; i<n; i++){
+	printf("%f ", numeros[i]);
+}
+return 0;
+}
+
+---------------------------
+Questao 17:
+
+#include <stdio.h>
+#include <stdlib.h>
+
+//Criando a função de comparação
+int compare(const void *a, const void *b) {
+int x = *(int*)a; //transformando o ponteiro a em ponteiro para int
+int y = *(int*)b; //transformando o ponteiro b em ponteiro para int
+if (x < y) return -1;
+else if (x == y) return 0;
+else return 1;
+}
+
+//Criando função ordenar qsort
+int ordenar(int *numeros, int n) { //função que recebe o array int numeros e o tamanho n.
+qsort(numeros, n, sizeof(int), compare); //função qsort recebe o array numero e o tamanho , o tamanho de cada int "sizeof" e a função compare.
+}
+
+int main() {
+//escrevendo a qtd de valores 
+int n;
+printf("Digite a qtd de valores: ");
+scanf("%d", &n);
+
+//digitando os valores
+int numeros[n];
+printf("Digite os %d valores:\n", n);
+for (int i = 0; i < n; i++) {
+    scanf("%d", &numeros[i]);
+}
+
+//chamando a função qsort
+ordenar(numeros, n); //chama a função ordenar e passa o array numero e o tamanho n
+for (int i = 0; i < n; i++) {
+    printf("%d ", numeros[i]);
+}
+return 0;
+}
+---------------------------
+Questao 18:
+
+------Código questão 16:---------
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+
+//Criando a função de comparação
+int compare (const void *a, const void *b){ 
+if (*(int*) a < *(int*)b) return -1; //compara: se a é menor que b retorna -1; 
+if (*(int*) a == *(int*)b) return 0;//compara: se a é igual a b retorna 0;
+if (*(int*) a > *(int*)b) return 1; //compara: se a é maior que b retorna 1;
+}
+
+//Criando função ordenar qsort
+int ordenar(int *numeros, int n) { //função que recebe o array int numeros e o tamanho n.
+
+clock_t inicio = clock(); // Captura o tempo de início da execução
+
+qsort(numeros, n, sizeof(int), compare); //função qsort recebe o array numero e o tamanho , o tamanho de cada int "sizeof" e a função compare.
+
+clock_t fim = clock(); // Captura o tempo de fim da execução
+    
+double tempo_execucao = (double)(fim - inicio) / CLOCKS_PER_SEC;
+
+printf("Tempo de execução: %.6f segundos\n", tempo_execucao); 
+    
+}
+
+int main(){
+
+//escrevendo a qtd de valores    
+int n;
+printf("Digite a qtd de valores: ");
+scanf("%d", &n);
+
+//digitando os valores
+int numeros[n];
+printf("Digite os " "%d " "valores: \n", n);
+for (int i = 0; i < n; i++) {
+    scanf("%d", &numeros[i]);
+}
+
+//chamando a função ordenar qsort
+ordenar(numeros, n); //chama a função ordenar e passa o array numero e o tamanho n
+for (int i=0; i<n; i++){
+	printf("%d ", numeros[i]);
+}
+return 0;
+}
+
+-----CÓDIGO QUESTÃO 17:-----
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+
+//Criando a função de comparação
+int compare(const void *a, const void *b) {
+    int x = *(int*)a; //transformando o ponteiro a em ponteiro para int
+    int y = *(int*)b; //transformando o ponteiro b em ponteiro para int
+    if (x < y) return -1;
+    else if (x == y) return 0;
+    else return 1;
+}
+
+//Criando função ordenar qsort
+int ordenar(int *numeros, int n) { //função que recebe o array int numeros e o tamanho n.
+    clock_t inicio = clock(); // Captura o tempo de início da execução
+    
+    qsort(numeros, n, sizeof(int), compare); //função qsort recebe o array numero e o tamanho , o tamanho de cada int "sizeof" e a função compare.
+
+    clock_t fim = clock(); // Captura o tempo de fim da execução
+    
+    double tempo_execucao = (double)(fim - inicio) / CLOCKS_PER_SEC;
+
+    printf("Tempo de execução: %.6f segundos\n", tempo_execucao);    
+}
+
+int main() {
+//escrevendo a qtd de valores 
+int n;
+printf("Digite a qtd de valores: ");
+scanf("%d", &n);
+
+//digitando os valores
+int numeros[n];
+printf("Digite os %d valores:\n", n);
+for (int i = 0; i < n; i++) {
+    scanf("%d", &numeros[i]);
+}
+
+//chamando a função qsort
+    ordenar(numeros, n); //chama a função ordenar e passa o array numero e o tamanho n
+    for (int i = 0; i < n; i++) {
+        printf("%d ", numeros[i]);
+    }
+    return 0;
+}
+
+
+----- RESULTADO -----
+Ao processar o ordenamento de 20 numeros podemos notar que o código com a função para ponteiros (Questão 17) utilizou 0,000003 segundos
+Enquanto o código com a função de ordenamento sem função para ponteiros (Questão 16) utilizou 0,000007.
+Ou seja, o ponteiro para função foi mais rápido.
+
+---------------------------
+Questao 19:
+
+#include <stdio.h>
+#include <stdlib.h>
+
+//Criando a função soma
+int soma(int *v1, int *v2, int *vsoma, int n){
+for (int i=0; i<n; i++){
+    vsoma[i]=v1[i]+v2[i];
+}
+}
+
+int main() {
+
+//escrevendo a qtd de valores 
+int n=4;
+
+// vetor soma
+int vsoma[n];
+
+//digitando os valores de v1
+int v1[n];
+printf("Digite os %d valores de v1:\n", n);
+for (int i = 0; i < n; i++) {
+    scanf("%d", &v1[i]);
+}
+
+//digitando os valores de v2
+int v2[n];
+printf("Digite os %d valores de v2:\n", n);
+for (int i = 0; i < n; i++) {
+    scanf("%d", &v2[i]);
+}
+
+//Imprimir texto de soma
+printf("A soma dos vetores :\n");
+
+//chamando a função soma e imprimindo
+soma(v1, v2, vsoma, n); //chama a função ordenar e passa o array numero e o tamanho n
+for (int i = 0; i < n; i++) {
+    printf("%d ", vsoma[i]);
+}
+    return 0;
+}
