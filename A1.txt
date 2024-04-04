@@ -487,3 +487,123 @@ for (int i = 0; i < n; i++) {
 }
     return 0;
 }
+---------------------------
+Questao 20:
+#include <stdio.h>
+
+int main(){
+
+// criando var de linhas e colunas das matrizes
+int iA, jA, iB, jB, i, j, k;
+
+// inserir o número de linhas e colunas das matrizes A e B
+printf("Digite o numero de linhas da matriz A: ");
+scanf("%d", &iA);
+printf("Digite o numero de colunas da matriz A: ");
+scanf("%d", &jA);
+printf("Digite o numero de linhas da matriz B: ");
+scanf("%d", &iB);
+printf("Digite o numero de colunas da matriz B: ");
+scanf("%d", &jB);
+    
+int A[iA][jA];
+int B[iB][jB];
+int C[iA][jB];
+int valor;
+    
+if (jA == iB){
+        
+// Inserir os valores da matriz A
+printf("Digite os valores da matriz A:\n");
+for (i = 0; i < iA; i++) {
+    for (j = 0; j < jA; j++) {
+        scanf("%d", &A[i][j]);
+    }
+}
+printf("\n");
+    
+//Inserir os valores da matriz B
+printf("Digite os valores da matriz B:\n");
+for (i = 0; i < iB; i++) {
+    for (j = 0; j < jB; j++) {
+        scanf("%d", &B[i][j]);
+    }
+}
+printf("\n");
+
+// Imprimir matrizes A e B
+printf("Matriz A \n");
+for(i = 0; i < iA; i++) {        
+	for(j = 0; j < jA; j++) {
+		printf("%d", A[i][j]);
+		printf("  ");
+	}
+	printf("\n");
+}
+printf("Matriz B \n");
+for(i = 0; i < iB; i++) {        
+	for(j = 0; j < jB; j++) {
+		printf("%d", B[i][j]);
+		printf("  ");
+	}
+	printf("\n");
+}
+	
+//Fazendo a operação de produto das matrizes A e B
+valor=0;
+for (i = 0; i < iA; i++) {
+    for ( j = 0; j < jB; j++) { //ex: A32 B23 C33
+        C[i][j] = 0; // define a matriz C[i][j] como 0
+        for (k = 0; k < jA; k++) {
+            valor = valor + A[i][k] * B[k][j];
+        }
+        C[i][j] = valor;
+        valor = 0;
+    }
+}
+    
+// Imprimir a matriz C
+printf("Matriz C \n");
+for(i = 0; i < iA; i++) {
+	for(j = 0; j < jB; j++) {
+		printf("%d", C[i][j]);
+		printf("  ");
+	}
+	printf("\n");
+}
+} else{
+    printf("!!!Matriz sem multiplicação!!!");
+}
+}
+---------------------------
+Questao 21:
+O erro está na letra D.
+No código foram criados 2 ponteiros (m e n) apontando para 2 blocos de memória.
+É feito a liberação do bloco de memória de m (Free) e portanto disponível para novas alocações para o mesmo endereço.
+Porém, em seguida, é atribuído "m=n" fazendo com que m aponte para o bloco de memória de n e consequentemente
+perdendo o acesso ao endereço primário devido a substituição, resultando em um memory leak.
+
+ 
+---------------------------
+Questao 22:
+x= 15 (operação de OR)
+y= 13 (Operação de XOR)
+z= 0 (Operação de AND bit a bita)
+
+seguindo o loop.
+---------------------------
+Questao 23:
+
+Reposta correta: 
+IV. I, apenas.
+
+Item II: A função2 faz uma busca binária e por isso é mais eficiente que a busca linear do vetor que percorre todo elementos do vetor (no pior caso). 
+Item III: A função2 faz uma implementação recursiva, chamando várias vezes a mesma função.
+
+---------------------------
+Questao 24:
+<resposta da questao 2>
+---------------------------
+Questao 25:
+
+---------------------------
