@@ -143,7 +143,7 @@ aloha = "value"; - Inválido. "aloha" é um vetor.
 printf("%f", aloha); - Inválido. "aloha" é um vetor.
 coisas[4][4] = aloha[3]; - Válido
 coisas[5] = aloha; - i=Inválido. "aloha" é um vetor.
-pf = value; - Inválido
+pf = value; - válido
 pf = aloha; - Válido
 ---------------------------
 Questao 13:
