@@ -5,6 +5,7 @@ Questao 1:
 p == &i; Ao comparar o valor armazenado em "p" com o endereço de memória de "i" apontam para o mesmo endereço de memória, portanto setença verdadeira = 1.
 *p - *q; O resultado é -2, uma vez que "*p" aponta para o valor de "i" (3) e "*q" aponta para o conteúdo de "j" (5).
 **&p; O resultado é 3, pois ao desrenferenciar "&p" o valor resultará em i (3).
+3 - *p/(*q) + 7; O resultado é 10. primeiro faz 3/5=0, depois soma com 3 e 7.
 ---------------------------
 Questao 2:
 p = 4094
